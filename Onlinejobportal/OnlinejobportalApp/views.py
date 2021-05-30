@@ -45,28 +45,28 @@ def user_login(request):
     d = {'error:error'}
     return render(request,'html/user_login.html',d)
 
+
 def recruiter_login(request):
-	error=""
+    error=""
     if request.method == "POST":
-    	u = request.post['uname'];
+        u = request.post['uname'];
         p = request.post['pwd'];
         user = authenticate(username=u,password=p)
         if user:
             try:
                 user1 = Recruiter.objects.get(user=user)
                 if user1.type == "recruiter" and user1.status != "pending" :
-                    login(request,user)
-                    error="no"
+                	login(request,user)
+                	error="no"
                 else:
-                    error="not"
+                    error="yes"
             except:
                 error="yes"
         else:
             error="yes"
-    else:
-    	error = "yes"
     d = {'error:error'}
-	return render(request,'html/recruiter_login.html',d)
+    return render(request,'html/recruiter_login.html',d)
+
 
 def recruiter_signup(request):
 	error=""
@@ -215,8 +215,8 @@ def change_passwordadmin(request):
 				u.set_password(n)
 				u.save()
 				error = "no"
-		else:
-			error = "yes"
+			else:
+				error = "yes"
 		except:
 			error= "yes"
 	d:{'recruiter':recruiter,'error':error}
@@ -235,8 +235,8 @@ def change_passworduser(request):
 				u.set_password(n)
 				u.save()
 				error = "no"
-		else:
-			error = "yes"
+			else:
+				error = "yes"
 		except:
 			error= "yes"
 	d:{'recruiter':recruiter,'error':error}
@@ -256,8 +256,8 @@ def change_passwordrecruiter(request):
 				u.set_password(n)
 				u.save()
 				error = "no"
-		else:
-			error = "yes"
+			else:
+				error = "yes"
 		except:
 			error= "yes"
 	d:{'recruiter':recruiter,'error':error}
