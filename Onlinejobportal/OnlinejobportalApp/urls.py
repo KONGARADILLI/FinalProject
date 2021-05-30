@@ -22,5 +22,8 @@ urlpatterns= [
  path('recruiter_all/',views.recruiter_all,name='recruiter_all'),
  path('delete_recruiter/<int:pid>',views.delete_recruiter,name='delete_recruiter'),
  path('change_passwordadmin/',views.change_passwordadmin,name='change_passwordadmin'),
+ path('change_passworduser/',views.change_passworduser,name="change_passworduser"),
+ path('change_passwordrecruiter/',views.change_passwordrecruiter,name="change_passwordrecruiter"),
+ path('add_job/',views.add_job,name="add_job"),
 
 ]

@@ -221,3 +221,50 @@ def change_passwordadmin(request):
 			error= "yes"
 	d:{'recruiter':recruiter,'error':error}
 	return render(request,'html/change_passwordadmin.html',d)
+
+def change_passworduser(request):
+	if not request.user.is_authenticated:
+		return redirect('user_login')
+	error=""
+	if request.method == "POST":
+		c = request.POST['currentpassword']
+		n = request.POST['newpassword']
+		try:
+			u = User.objects.get(id=request.user.id)
+			if u.check_password(c):
+				u.set_password(n)
+				u.save()
+				error = "no"
+		else:
+			error = "yes"
+		except:
+			error= "yes"
+	d:{'recruiter':recruiter,'error':error}
+	return render(request,'html/change_passworduser.html',d)
+
+
+def change_passwordrecruiter(request):
+	if not request.user.is_authenticated:
+		return redirect('recruiter_login')
+	error=""
+	if request.method == "POST":
+		c = request.POST['currentpassword']
+		n = request.POST['newpassword']
+		try:
+			u = User.objects.get(id=request.user.id)
+			if u.check_password(c):
+				u.set_password(n)
+				u.save()
+				error = "no"
+		else:
+			error = "yes"
+		except:
+			error= "yes"
+	d:{'recruiter':recruiter,'error':error}
+	return render(request,'html/change_passwordrecruiter.html',d)
+
+def add_job(request):
+	if not request.user.is_authenticated:
+		return redirect('recruiter_login')
+	return render(request,'html/add_job.html')
+
