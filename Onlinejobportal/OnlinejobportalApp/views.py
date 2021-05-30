@@ -10,8 +10,8 @@ def index(request):
 def admin_login(request):
 	error=""
 	if request.method == "POST":
-		u = request.post['uname'];
-		p = request.post['pwd'];
+		u = request.POST['uname'];
+		p = request.POST['pwd'];
 		user = authenticate(username = u, password=p)
 		try:
 			if user.is_staf:
@@ -27,8 +27,8 @@ def admin_login(request):
 def user_login(request):
     error=""
     if request.method == "POST":
-        u = request.post['uname'];
-        p = request.post['pwd'];
+        u = request.POST['uname'];
+        p = request.POST['pwd'];
         user = authenticate(username=u,password=p)
         if user:
             try:
@@ -42,15 +42,15 @@ def user_login(request):
                 error="yes"
         else:
             error="yes"
-    d = {'error:error'}
+    d = {'error':error}
     return render(request,'html/user_login.html',d)
 
 
 def recruiter_login(request):
     error=""
     if request.method == "POST":
-        u = request.post['uname'];
-        p = request.post['pwd'];
+        u = request.POST['uname'];
+        p = request.POST['pwd'];
         user = authenticate(username=u,password=p)
         if user:
             try:
@@ -64,7 +64,7 @@ def recruiter_login(request):
                 error="yes"
         else:
             error="yes"
-    d = {'error:error'}
+    d = {'error':error}
     return render(request,'html/recruiter_login.html',d)
 
 
@@ -85,7 +85,7 @@ def recruiter_signup(request):
 			error="no"
 		except:
 			error="yes"
-			d={'error':error}
+	d={'error':error}
 	return render(request,'html/recruiter_signup.html',d)
 
 
@@ -102,7 +102,7 @@ def recruiter_home(request):
 
 def Logout(request):
     logout(request)
-    return redirect('index')
+    return redirect('index/')
 
 def user_signup(request):
 	error=""
