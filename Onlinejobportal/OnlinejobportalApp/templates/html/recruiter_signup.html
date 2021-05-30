@@ -79,15 +79,18 @@
 	</div>
 	<input type="submit" value="Submit" class="btn btn-primary my-3" style="width: 200px">
 </form>
+
 {% ifequal error "no" %}
 <script>
 	alert("SignUp Successful");
-	window.location=('{% url 'user_login' %}')
+	window.location=('{% url 'recruiter_login' %}')
 </script>
 {% endifequal %}
+
 {% ifequal error "yes" %}
 <script>
 	alert("Something went wrong, try again........");
 </script>
 {% endifequal %}
+
 {% endblock %}

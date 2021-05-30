@@ -15,6 +15,18 @@
 	<input type="password" class="form-control" name="pwd" placeholder="Enter password">
 	<input type="submit" class= "btn btn-primary" style="margin-top: 2%;color: darkcyan;background-color: black ; height: 40px; font-size: 20px" >
 </form>
+{% ifequal error "no" %}
+<script>
 
+    alert("Login Successfully");
+    window.location = ('{% url 'admin_home' %}') 
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Invalid login Credentials ,Try Again...");
+</script>
+{% endifequal %}
 
 {% endblock %}
