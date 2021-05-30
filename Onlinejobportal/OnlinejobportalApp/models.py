@@ -23,3 +23,20 @@ class Recruiter(models.Model):
 
 	def _str_(self):
 		return self.user.username
+
+class Job(models.Model):
+	recruiter =models.ForeignKey(Recruiter,on_delete=models.CASCADE)
+	start_date = models.DateField()
+	end_date = models.DateField()
+	title =models.CharField(max_length=100)
+	salary = models.FloatField(max_length=100)
+	image = models.FileField()
+	description = models.CharField(max_length=300)
+	experience = models.CharField(max_length=50)
+	location = models.CharField(max_length=100)
+	skills = models.CharField(max_length=100)
+	creationdate = models.DateField()
+	
+
+	def str(self):
+		return self.title

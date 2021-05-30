@@ -2,7 +2,7 @@
 {% load static %}
 {% block body %}
 
-{% include 'html/admin_navigation.html %}
+{% include 'html/admin_navigation.html' %}
 <marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
 	View Recruiters -Accepted 
 </marquee>
@@ -31,7 +31,7 @@
 			<td>{{i.moblie}}</td>
 			<td>{{i.gender}}</td>
 			<td>{{i.company}}</td>
-			<td><img src="{{i.image.url}}" style="..."></td>
+			<td><img src="{{i.image.url}}" style="height: 100px; width: 100px;"></td>
 			<td>{{i.status}}</td>
 			<td><a href="{% url 'change_status' i.id %}" class="btn btn-success btn-sm " >Change Status</a></td>
 		</tr>

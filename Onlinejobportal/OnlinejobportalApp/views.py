@@ -10,17 +10,17 @@ def index(request):
 def admin_login(request):
 	error=""
 	if request.method == "POST":
-		u = request.POST['uname'];
-		p = request.POST['pwd'];
-		user = authenticate(username = u, password=p)
+		u = request.POST['uname']
+		p = request.POST['pwd']
+		user = authenticate(username=u,password=p)
 		try:
-			if user.is_staf:
+			if user.is_staff:
 				login(request,user)
 				error="no"
 			else:
 				error="yes"
 		except:
-			error="yes"
+			error = "yes"
 	d={'error':error}
 	return render(request,'html/admin_login.html',d)
 
@@ -55,11 +55,11 @@ def recruiter_login(request):
         if user:
             try:
                 user1 = Recruiter.objects.get(user=user)
-                if user1.type == "recruiter" and user1.status != "pending" :
-                	login(request,user)
-                	error="no"
+                if user1.type == "recruiter" and user1.status != "pending":
+                    login(request,user)
+                    error="no"
                 else:
-                    error="yes"
+                    error="not"
             except:
                 error="yes"
         else:
@@ -91,7 +91,7 @@ def recruiter_signup(request):
 
 def user_home(request):
     if not request.user.is_authenticated:
-        return redirect('user_login')
+        return redirect('user_login/')
     return render(request,'html/user_home.html')
 
 def recruiter_home(request):
@@ -102,7 +102,7 @@ def recruiter_home(request):
 
 def Logout(request):
     logout(request)
-    return redirect('index/')
+    return redirect('index')
 
 def user_signup(request):
 	error=""
@@ -138,7 +138,7 @@ def view_users(request):
 	if not request.user.is_authenticated:
 		return redirect('admin_login')
 	data = StudentUser.objects.all()
-	d:{'data':data}
+	d={'data':data}
 	return render(request,'html/view_users.html',d)
 
 
@@ -161,7 +161,7 @@ def recruiter_pending(request):
 	if not request.user.is_authenticated:
 		return redirect('admin_login')
 	data = Recruiter.objects.filter(status='pending')
-	d:{'data':data}
+	d={'data':data}
 	return render(request,'html/recruiter_pending.html',d)
 
 
@@ -178,28 +178,28 @@ def change_status(request,pid):
 			error = "no"
 		except:
 			error= "yes"
-	d:{'recruiter':recruiter,'error':error}
+	d={'recruiter':recruiter,'error':error}
 	return render(request,'html/change_status.html',d)
 
 def recruiter_accepted(request):
 	if not request.user.is_authenticated:
 		return redirect('admin_login')
 	data = Recruiter.objects.filter(status='Accept')
-	d:{'data':data}
+	d={'data':data}
 	return render(request,'html/recruiter_accepted.html',d)
 
 def recruiter_rejected(request):
 	if not request.user.is_authenticated:
 		return redirect('admin_login')
 	data = Recruiter.objects.filter(status='Reject')
-	d:{'data':data}
+	d={'data':data}
 	return render(request,'html/recruiter_rejected.html',d)
 
 def recruiter_all(request):
 	if not request.user.is_authenticated:
 		return redirect('admin_login')
 	data = Recruiter.objects.all()
-	d:{'data':data}
+	d={'data':data}
 	return render(request,'html/recruiter_all.html',d)
 
 def change_passwordadmin(request):
@@ -219,7 +219,7 @@ def change_passwordadmin(request):
 				error = "yes"
 		except:
 			error= "yes"
-	d:{'recruiter':recruiter,'error':error}
+	d={'error':error}
 	return render(request,'html/change_passwordadmin.html',d)
 
 def change_passworduser(request):
@@ -239,7 +239,7 @@ def change_passworduser(request):
 				error = "yes"
 		except:
 			error= "yes"
-	d:{'recruiter':recruiter,'error':error}
+	d={'error':error}
 	return render(request,'html/change_passworduser.html',d)
 
 
@@ -260,7 +260,7 @@ def change_passwordrecruiter(request):
 				error = "yes"
 		except:
 			error= "yes"
-	d:{'recruiter':recruiter,'error':error}
+	d={'error':error}
 	return render(request,'html/change_passwordrecruiter.html',d)
 
 def add_job(request):

@@ -4,6 +4,83 @@
 
 {% include 'html/recruiter_navigation.html' %}
 
+<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
+	Add Job Details
+</marquee>
+<hr>
+<form class="container mt-5" onsubmit="return checkpass()" name="signup" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			<label>Job Title</label>
+			<input type="text" class=" form-control" name="jobtitle" placeholder="Enter job title" required>
+		</div>
+		
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<label>Start Date</label>
+			<input type="date" class=" form-control" name="startdate" required>
+		</div>
+		<div class="form-group col-md-6">
+			<label>End Date</label>
+			<input type="date" class=" form-control" name="enddate" required>
+		</div>
 
+    </div>
+    
+
+    <div class="form-row">
+		<div class="form-group col-md-6">
+			<label>Salary (Per Month)</label>
+			<input type="text" class=" form-control" name="salary" required>
+		</div>
+		<div class="form-group col-md-6">
+			<label>Company Logo</label>
+			<input type="file" class=" form-control" name="logo" required>
+		</div>
+
+	</div>
+
+
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			<label>Experiance(In Years)</label>
+			<input type="text" class=" form-control" name="experience" placeholder="Enter Experience.." required>
+		</div>
+    </div>
+    
+
+    <div class="form-row">
+		<div class="form-group col-md-12">
+			<label>Skills</label>
+			<input type="text" class=" form-control" name="skills" placeholder="Skills Required" required>
+		</div>
+	</div>
+
+    <div class="form-row">
+		<div class="form-group col-md-12">
+			<label>Description</label>
+			<textarea class=" form-control" name="description" placeholder="Enter Description" requiredv></textarea>
+		</div>
+	</div>
+
+
+
+	<input type="submit" value="Submit" class="btn btn-primary my-3" style="width: 200px">
+</form>
+
+{% ifequal error "no" %}
+<script>
+	alert("SignUp Successful");
+	window.location=('{% url 'recruiter_login' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+	alert("Something went wrong, try again........");
+</script>
+{% endifequal %}
 
 {% endblock %}
