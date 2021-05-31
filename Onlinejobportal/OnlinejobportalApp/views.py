@@ -266,5 +266,30 @@ def change_passwordrecruiter(request):
 def add_job(request):
 	if not request.user.is_authenticated:
 		return redirect('recruiter_login')
-	return render(request,'html/add_job.html')
+	error=""
+	if request.method == 'POST':
+		jt = request.POST['jobtitle']
+		sd = request.POST['startdate']
+		ed = request.POST['enddate']
+		sal = request.POST['salary']
+		l = request.FILES['logo']
+		exp = request.POST['experience']
+		loc = request.POST['location']
+		skills = request.POST['skills']
+		des = request.POST['description']
+		user = request.user
 
+		recruiter = Recruiter.objects.get(user=user)
+		try:
+			Job.objects.create(recruiter=recruiter,start_date = sd,end_date=ed,title=jt,salary=sal,image=l,
+			description= des,experience = exp,location=loc,skills=skills,creationdate =date.today())
+			error="no"
+		except:
+			error="yes"
+	d={'error':error}
+	return render(request,'html/add_job.html',d)
+
+def job_list(request):
+    if not request.user.is_authenticated:
+    	return redirect('recruiter_login')
+    return render(request,'html/job_list.html')
