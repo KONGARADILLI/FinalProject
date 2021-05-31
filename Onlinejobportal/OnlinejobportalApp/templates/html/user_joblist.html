@@ -3,7 +3,39 @@
 {% block body %}
 
 {% include 'html/user_navigation.html' %}
-<h3>This is the User Joblist </h3>
+<style>
+    tr{text-align: center;}
+</style>
+<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
+	User Job List
+</marquee>
+<hr>
+<div class="container">
+<table class="table table-hover" id="example">
+	<thead>
+		<tr style = "background-color: #000080;color:white">
+			<th>S.no</th>
+			<th>Job Title</th>
+			<th>Salary</th>
+			<td>Company</td>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for i in job%}
+		<tr style = "background-color: #DEB887">
+			<td>{{forloop.counter}}</td>
+			<td>{{i.title}}</td>
+			<td>{{i.salary}}</td>
+			<td>{{i.company}}</td>
+            <td><a href="{% url 'apply_job' %}" class="btn btn-success btn-sm " >Apply</a>
+            
+
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+</div>
 
 
 {% endblock %}

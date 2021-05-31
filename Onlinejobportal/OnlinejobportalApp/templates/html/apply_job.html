@@ -1,0 +1,32 @@
+{% load static %}
+
+{% block body %}
+
+{% include 'html/user_navigation.html' %}
+<h3>Apply Here</h3>
+<style>
+    tr{text-align: center;}
+</style>
+<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
+	Apply for job
+</marquee>
+<hr>
+<form class="container mt-5" onsubmit="return checkpass()" name="signup" method="POST" enctype="multipart/form-data">
+	{% csrf_token %}
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			<label>FullName</label>
+			<input type="text" class=" form-control" name="jobtitle" readonly value="{{user.first_name}} {{user.last_name}}" required>
+		</div>
+	</div>
+
+    <div class="form-row">
+		<div class="form-group col-md-6">
+			<label>Upload Resume</label>
+			<input type="file" class=" form-control" name="resume" required>
+		</div>
+	</div>
+	<input type="submit" value="Submit" class="btn btn-primary my-3" style="width: 200px">
+</form>
+
+{% endblock %}

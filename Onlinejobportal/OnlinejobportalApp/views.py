@@ -399,9 +399,18 @@ def change_companylogo(request,pid):
 
 def user_joblist(request):
     if not request.user.is_authenticated:
-    	return redirect('recruiter_login')
+    	return redirect('user_login')
     # user = request.user
     # recruiter = Recruiter.objects.get(user=user)
     # job = Job.objects.filter(recruiter = recruiter)
     # d={'job':job}
-    return render(request,'html/user_joblist.html')
+    # user = request.user
+    # recruiter = Recruiter.objects.get(user=user)
+    job = Job.objects.all()
+    # recruiter = Recruiter.objects.all()
+    d={'job':job}
+    return render(request,'html/user_joblist.html',d)
+
+
+def apply_job(request):
+	return render(request,'html/apply_job.html')
