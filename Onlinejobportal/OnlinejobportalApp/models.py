@@ -29,7 +29,7 @@ class Job(models.Model):
 	start_date = models.DateField()
 	end_date = models.DateField()
 	title =models.CharField(max_length=100)
-	salary = models.FloatField(max_length=100)
+	salary = models.FloatField(null=True)
 	image = models.FileField()
 	description = models.CharField(max_length=300)
 	experience = models.CharField(max_length=50)

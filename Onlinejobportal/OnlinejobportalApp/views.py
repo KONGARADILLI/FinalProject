@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
+from datetime import date
 
 # Create your views here.
 def index(request):
@@ -183,6 +184,13 @@ def delete_recruiter(request,pid):
 	recruiter.delete()
 	return redirect('/recruiter_all')
 
+def delete_job(request,pid):
+	if not request.user.is_authenticated:
+		return redirect('recruiter_login')
+	job = Job.objects.get(id=pid)
+	job.delete()
+	return redirect('/job_list')
+
 def recruiter_pending(request):
 	if not request.user.is_authenticated:
 		return redirect('admin_login')
@@ -340,7 +348,7 @@ def edit_jobdetail(request,pid):
 		des = request.POST['description']
 
 		job.title = jt
-		job.salary = sl
+		job.salary = sal
 		job.experience = exp
 		job.location = loc
 		job.skills = skills
@@ -386,3 +394,14 @@ def change_companylogo(request,pid):
 			error="yes"
 	d={'error':error,'job':job}
 	return render(request,'html/change_companylogo.html',d)
+
+
+
+def user_joblist(request):
+    if not request.user.is_authenticated:
+    	return redirect('recruiter_login')
+    # user = request.user
+    # recruiter = Recruiter.objects.get(user=user)
+    # job = Job.objects.filter(recruiter = recruiter)
+    # d={'job':job}
+    return render(request,'html/user_joblist.html')

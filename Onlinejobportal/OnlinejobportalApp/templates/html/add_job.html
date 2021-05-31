@@ -44,15 +44,13 @@
 
 
 	<div class="form-row">
-		<div class="form-group col-md-12">
+		<div class="form-group col-md-6">
 			<label>Experiance(In Years)</label>
 			<input type="text" class=" form-control" name="experience" placeholder="Enter Experience.." required>
 		</div>
-    </div>
-    <div class="form-row">
-		<div class="form-group col-md-12">
+		<div class="form-group col-md-6">
 			<label>Location</label>
-			<input type="text" class=" form-control" name="skills" placeholder="Job Location" required>
+			<input type="text" class=" form-control" name="location" placeholder="Job Location" required>
 		</div>
 	</div>
 
@@ -76,7 +74,7 @@
 	<input type="submit" value="Submit" class="btn btn-primary my-3" style="width: 200px">
 </form>
 
-{% ifequal error "no" %}
+<!-- {% ifequal error "no" %}
 <script>
 	alert("Job detail has been added");
 	window.location=('{% url 'job_list' %}')
@@ -87,6 +85,6 @@
 <script>
 	alert("Something went wrong, try again........");
 </script>
-{% endifequal %}
-{% include 'footer.html' %}
+{% endifequal %} -->
+{% include 'html/footer.html' %}
 {% endblock %}
