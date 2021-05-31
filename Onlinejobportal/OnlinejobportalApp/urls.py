@@ -26,6 +26,7 @@ urlpatterns= [
  path('change_passwordrecruiter/',views.change_passwordrecruiter,name="change_passwordrecruiter"),
  path('add_job/',views.add_job,name="add_job"),
  path('job_list/',views.job_list,name="job_list"),
-
+ path('edit_jobdetail/<int:pid>',views.edit_jobdetail,name='edit_jobdetail'),
+ path('change_companylogo/<int:pid>',views.change_companylogo,name='change_companylogo'),
 
 ]

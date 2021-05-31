@@ -5,26 +5,26 @@
 {% include 'html/recruiter_navigation.html' %}
 
 <marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
-	Add Job Details
+	Edit Job Details
 </marquee>
 <hr>
-<form class="container mt-5" onsubmit="return checkpass()" name="signup" method="POST" enctype="multipart/form-data">
+<form class="container mt-5" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			<label>Job Title</label>
-			<input type="text" class=" form-control" name="jobtitle" placeholder="Enter job title" required>
+			<input type="text" class=" form-control" name="jobtitle" value = "{{job.title}}" required>
 		</div>
 		
 	</div>
 	<div class="form-row">
 		<div class="form-group col-md-6">
-			<label>Start Date</label>
-			<input type="date" class=" form-control" name="startdate" required>
+			<label>Start Date</label><span style="color:red;">[{{job.start_date}}]</span>
+			<input type="date" class=" form-control" name="startdate" >
 		</div>
 		<div class="form-group col-md-6">
-			<label>End Date</label>
-			<input type="date" class=" form-control" name="enddate" required>
+			<label>End Date</label><span style="color:red;">[{{job.end_date}}]</span>
+			<input type="date" class=" form-control" name="enddate">
 		</div>
 
     </div>
@@ -33,11 +33,10 @@
     <div class="form-row">
 		<div class="form-group col-md-6">
 			<label>Salary (Per Month)</label>
-			<input type="text" class=" form-control" name="salary" required>
+			<input type="text" class=" form-control" name="salary" value = "{{job.salary}}"required>
 		</div>
 		<div class="form-group col-md-6">
-			<label>Company Logo</label>
-			<input type="file" class=" form-control" name="logo" required>
+			<img src="{{job.image.url}}" width="120" height="90"><a href="{% url 'change_companylogo' job.id %}">Change Company logo</a>
 		</div>
 
 	</div>
@@ -46,28 +45,27 @@
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			<label>Experiance(In Years)</label>
-			<input type="text" class=" form-control" name="experience" placeholder="Enter Experience.." required>
+			<input type="text" class=" form-control" name="experience" value = "{{job.experience}}"required>
 		</div>
     </div>
-    <div class="form-row">
+     <div class="form-row">
 		<div class="form-group col-md-12">
 			<label>Location</label>
-			<input type="text" class=" form-control" name="skills" placeholder="Job Location" required>
+			<input type="text" class=" form-control" name="skills" value = "{{job.location}}" required>
 		</div>
 	</div>
-
 
     <div class="form-row">
 		<div class="form-group col-md-12">
 			<label>Skills</label>
-			<input type="text" class=" form-control" name="skills" placeholder="Skills Required" required>
+			<input type="text" class=" form-control" name="skills" value = "{{job.skills}}" required>
 		</div>
 	</div>
 
     <div class="form-row">
 		<div class="form-group col-md-12">
 			<label>Description</label>
-			<textarea class=" form-control" name="description" placeholder="Enter Description" required></textarea>
+			<textarea class=" form-control" name="description"  required>{{job.description}}</textarea>
 		</div>
 	</div>
 
@@ -78,8 +76,8 @@
 
 {% ifequal error "no" %}
 <script>
-	alert("Job detail has been added");
-	window.location=('{% url 'job_list' %}')
+	alert("Job detail has been Updated");
+	window.location=('{% url 'edit_jobdetail' job.id %}')
 </script>
 {% endifequal %}
 
