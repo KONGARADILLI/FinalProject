@@ -3,18 +3,36 @@
 {% block body %}
 
 {% include 'html/navbar.html' %}
-<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
-	User Login
-</marquee>
+<style>
+
+	.marquee{
+		font-family: Algerian;
+		font-size: 25px;
+		color: rgb(0, 0, 0); 
+		font-weight: bold;
+		text-align: center;
+		margin: 10px;
+
+
+	}
+#form{
+
+}
+</style>
+<h4 class="marquee">User Login</h4>
 <hr>
-<form class="container mt-5" method="POST">
+<form id="form" class="container mt-5" method="POST">
 	{% csrf_token %}
-	<label><b>Email Id</b></label>
-	<input type="email" class="form-control" name="uname" placeholder="Enter Email">
-	<label><b>Password</b></label>
-	<input type="password" class="form-control" name="pwd" placeholder="Enter password">
-	<input type="submit" value="Login" class= "btn btn-primary" style="margin-top: 2%;color: darkcyan;background-color: black ; height: 40px; font-size: 20px" >
-	<a href="{% url 'user_signup' %}" class="btn btn-primary" style="margin-top: 2%;color: darkcyan;background-color: black ; height: 40px; font-size: 20px">Sign up</a>
+	<label><b>Email Id :</b></label>
+	<input type="email" class="form-control" name="uname" placeholder="Enter Email" required>
+	<label><b>Password :</b></label>
+	<input type="password" class="form-control" name="pwd" placeholder="Enter password" required>
+
+	<input type="submit" value="Login" class= "btn btn-primary" style="margin-top: 2%;font-family:bold;color:
+	 rgb(252, 252, 252);background-color: rgb(53, 99, 252) ; height: 40px; font-size: 20px" >
+
+	<a href="{% url 'user_signup' %}" class="btn btn-primary" style="margin-top: 2%;font-family:bold;color: 
+	rgb(252, 252, 252);background-color: rgb(53, 99, 252) ; height: 40px; font-size: 20px">Sign up</a>
 </form>
 
 {% ifequal error "no" %}

@@ -16,7 +16,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-12">
 			<label>FullName</label>
-			<input type="text" class=" form-control" name="jobtitle" readonly value="{{user.first_name}} {{user.last_name}}" required>
+			<input type="text" class=" form-control" name="studentname" readonly value="{{user.first_name}} {{user.last_name}}" required>
 		</div>
 	</div>
 
@@ -28,5 +28,17 @@
 	</div>
 	<input type="submit" value="Submit" class="btn btn-primary my-3" style="width: 200px">
 </form>
+{% ifequal error "no" %}
+<script>
+	alert("Applied successfully ");
+	window.location=('{% url 'user_home' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+	alert("Something went wrong, try again........");
+</script>
+{% endifequal %}
 
 {% endblock %}

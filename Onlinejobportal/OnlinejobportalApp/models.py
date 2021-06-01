@@ -20,7 +20,6 @@ class Recruiter(models.Model):
 	company = models.CharField(max_length=100,null=True)
 	type = models.CharField(max_length=10,null=True)
 	status = models.CharField(max_length=20,null=True)
-	student_resumes = models.FileField(null=True)
 	def _str_(self):
 		return self.user.username
 
@@ -40,3 +39,8 @@ class Job(models.Model):
 
 	def str(self):
 		return self.title
+
+class Apply(models.Model):
+	recruiter =models.ForeignKey(Recruiter,on_delete=models.CASCADE)
+	student_resumes = models.FileField(null=True)
+	applied_student = models.CharField(max_length=20,null=True)
