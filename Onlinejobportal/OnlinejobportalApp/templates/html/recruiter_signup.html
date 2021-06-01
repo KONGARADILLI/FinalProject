@@ -3,6 +3,21 @@
 {% block body %}
 
 {% include 'html/navbar.html' %}
+<style>
+
+	.marquee{
+		font-family: Algerian;
+		font-size: 25px;
+		color: rgb(0, 0, 0); 
+		font-weight: bold;
+		text-align: center;
+		margin: 10px;
+
+
+	}
+
+</style>
+
 <script>
 	function checkpass()
 	{
@@ -15,9 +30,8 @@
 		return true;
 	}
 </script>
-<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
-	Recruiter SignUp
-</marquee>
+<h4 class="marquee">Recruiter SignUp</h4>
+
 <hr>
 <form class="container mt-5" onsubmit="return checkpass()" name="signup" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
@@ -61,7 +75,7 @@
 	<div class="form-row">
 		<div class="form-group col-md-6">
 			<label>Gender</label>
-			<div style="border:1px solid lightgrey ; padding: 6px;border-radius: 6px">
+			<div style="border:1px solid rgb(255, 255, 255) ; padding: 6px;border-radius: 6px">
 			<div class="custom-control custom-radio custom-control-inline">
 				<input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="Male">
 				<label class="custom-control-label" for="customRadioInline1">Male</label>

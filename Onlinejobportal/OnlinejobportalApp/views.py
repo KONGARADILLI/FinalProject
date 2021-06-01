@@ -412,25 +412,6 @@ def user_joblist(request):
     return render(request,'html/user_joblist.html',d)
 
 
-def apply_job(request):
-	if not request.user.is_authenticated:
-		return redirect('user_login')
-	error=""
-	if request.method == 'POST':
-		res = request.FILES['resume']
-		user = request.user
-				# recruiter = Recruiter.objects.get(user=user)
-
-		try:
-			Apply.objects.create(student_resumes=res,applied_student=user)
-			error="no"
-		except:
-			error="yes"
-
-	d={'error':error}
-
-	return render(request,'html/apply_job.html',d)
-
 def candidate_applied(request):
 	if not request.user.is_authenticated:
 		return redirect('recruiter_login')
@@ -440,4 +421,22 @@ def candidate_applied(request):
 	d={'job':job}
 	return render(request,'html/candidate_applied.html',d)
 
+
+def apply_job(request):
+	if not request.user.is_authenticated:
+		return redirect('user_login')
+	error=""
+	if request.method == 'POST':
+		res = request.FILES['resume']
+		user = request.user
+		student = User.objects.get(username=user)
+		recruiter = Recruiter.objects.get(user=user)
+		job = Job.objects.get(recruiter=recruiter)
+		try:
+			Apply.objects.create(student_resumes=res,applied_student=user,job=job)
+			error="no"
+		except:
+			error="yes"
+	d={'error':error}
+	return render(request,'html/apply_job.html',d)
 
