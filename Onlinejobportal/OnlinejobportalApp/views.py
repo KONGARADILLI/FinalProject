@@ -413,4 +413,6 @@ def user_joblist(request):
 
 
 def apply_job(request):
+	if not request.user.is_authenticated:
+		return redirect('user_login')
 	return render(request,'html/apply_job.html')
