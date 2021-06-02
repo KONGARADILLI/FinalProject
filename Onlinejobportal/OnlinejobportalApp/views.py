@@ -429,9 +429,9 @@ def apply_job(request):
 	if request.method == 'POST':
 		res = request.FILES['resume']
 		user = request.user
-		student = User.objects.get(username=user)
-		recruiter = Recruiter.objects.get(user=user)
-		job = Job.objects.get(recruiter=recruiter)
+		st = StudentUser.objects.get(user=user)
+		recruiter = Recruiter.objects.get(user=st)
+		job = Job.objects.filter(recruiter = recruiter)
 		try:
 			Apply.objects.create(student_resumes=res,applied_student=user,job=job)
 			error="no"
