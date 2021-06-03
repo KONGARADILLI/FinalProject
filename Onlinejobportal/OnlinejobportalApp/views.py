@@ -412,31 +412,44 @@ def user_joblist(request):
     return render(request,'html/user_joblist.html',d)
 
 
-def candidate_applied(request):
-	if not request.user.is_authenticated:
-		return redirect('recruiter_login')
-	user = request.user
-	recruiter = Recruiter.objects.get(user=user)
-	job = Job.objects.filter(recruiter = recruiter)
-	d={'job':job}
-	return render(request,'html/candidate_applied.html',d)
 
-
-def apply_job(request):
+def apply_job(request,pid):
 	if not request.user.is_authenticated:
 		return redirect('user_login')
 	error=""
 	if request.method == 'POST':
 		res = request.FILES['resume']
+		st = request.POST['studentname']
+		# company= request.POST['company']
+		# jt = request.POST['title']
 		user = request.user
-		st = StudentUser.objects.get(user=user)
-		recruiter = Recruiter.objects.get(user=st)
-		job = Job.objects.filter(recruiter = recruiter)
+		job = Job.objects.get(id = pid)
+		recruiter = Recruiter.objects.get(job=job)
+
 		try:
-			Apply.objects.create(student_resumes=res,applied_student=user,job=job)
+			Apply.objects.create(student_resumes=res,applied_student=st,job=job,recruiter=recruiter)
 			error="no"
 		except:
 			error="yes"
 	d={'error':error}
 	return render(request,'html/apply_job.html',d)
 
+
+
+
+def candidate_applied(request):
+	if not request.user.is_authenticated:
+		return redirect('recruiter_login')
+	# user = request.user
+	# recruiter = Recruiter.objects.all()
+	# job = Job.objects.filter(recruiter = recruiter)
+	app = Apply.objects.all()
+	d={'app':app}
+	return render(request,'html/candidate_applied.html',d)
+
+def view_users(request):
+	if not request.user.is_authenticated:
+		return redirect('admin_login')
+	data = StudentUser.objects.all()
+	d={'data':data}
+	return render(request,'html/view_users.html',d)

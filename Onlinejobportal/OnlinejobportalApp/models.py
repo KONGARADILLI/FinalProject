@@ -42,5 +42,6 @@ class Job(models.Model):
 
 class Apply(models.Model):
 	job = models.ForeignKey(Job,on_delete=models.CASCADE)
+	recruiter =models.ForeignKey(Recruiter,on_delete=models.CASCADE)
 	student_resumes = models.FileField(null=True)
 	applied_student = models.CharField(max_length=20,null=True)

@@ -6,7 +6,7 @@
     tr{text-align: center;}
 </style>
 <marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
-	Manage Job Details
+	Candidate list
 </marquee>
 <hr>
 <div class="container">
@@ -15,16 +15,14 @@
 		<tr style = "background-color: #000080;color:white">
 			<th>S.no</th>
 			<th>Name </th>
-			<th>Email</th>
 			<th>Resume</th>
 		</tr>
 	</thead>
 	<tbody>
-		{% for i in job %}
+		{% for i in app %}
 		<tr style = "background-color: #DEB887">
 			<td>{{forloop.counter}}</td>
-			<td>{{i.first_name}} {{i.last_name}}</td>
-			<td>{{i.user}}</td>
+			<td>{{i.applied_student}}</td>
 			<td>{{i.student_resume}}</td>
 		</tr>
 		{% endfor %}

@@ -3,14 +3,28 @@
 {% block body %}
 
 {% include 'html/admin_navigation.html' %}
-<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
+
+<style>
+
+	.marquee{
+		font-family: Algerian;
+		font-size: 25px;
+		color: rgb(0, 0, 0); 
+		font-weight: bold;
+		text-align: center;
+		margin: 10px;
+		
+	}
+
+</style>
+<h4 class="marquee">
 	View All Recruiters 
-</marquee>
+</h4>
 <hr>
 <div class="container">
 <table class="table table-hover" id="example">
 	<thead>
-		<tr style = "background-color: #000080;color:white">
+		<tr style = "background-color: #3E3FA0;color:white">
 			<th>S.no</th>
 			<th>Full Name</th>
 			<th>Email Id</th>
@@ -24,22 +38,23 @@
 	</thead>
 	<tbody>
 		{% for i in data %}
-		<tr style = "background-color: #DEB887">
+		<tr style = "color:black;font-size:15px">
 			<td>{{forloop.counter}}</td>
 			<td>{{i.user.first_name}} {{i.user.last_name}}</td>
 			<td>{{i.user.username}}</td>
 			<td>{{i.moblie}}</td>
 			<td>{{i.gender}}</td>
 			<td>{{i.company}}</td>
-			<td><img src="{{i.image.url}}" style="height: 100px; width: 100px;"></td>
+			<td><img src="{{i.image.url}}" style="height: 100px; width: 100px; border-radius: 10px;"></td>
 			<td>{{i.status}}</td>
 			<td><a href="{% url 'change_status' i.id %}" class="btn btn-success btn-sm " >Change Status</a>
-				|<a href="{% url 'delete_recruiter' i.user.id %}" class="btn btn-danger btn-sm " >Delete</a>
+				| <a href="{% url 'delete_recruiter' i.user.id %}" class="btn btn-danger btn-sm " >Delete</a>
 			</td>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
 </div>
+{% include 'html/footer.html' %}
 
 {% endblock %}

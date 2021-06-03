@@ -17,63 +17,109 @@
 		height: 30px;
 		width: 91%;
 	}
-</style>
-<div class="container-fluid" style="margin-top: 1%">
-	<img src="{% static 'images/aitshomepage.jpeg' %}" style="height: 450px;width: 100%">
+	.our{
+		font-family: times;
+		padding: 20px;
+		color: black;
+		text-align: center;
+	}
+	.para{
 
-</div>
-<div class="container" style="background-color: black; height: 550px;margin-top: 2%">
-	<h1 class="text-center text-white">----------|OUR PLACED STUDENTS|----------</h1>
+		font-size: 20px;
+		margin-top: 1%;
+		margin-left: 3%;
+		margin-right: 3%;
+		color: orangered;
+		font-weight: bold;
+	}
+	.para p{
+		color: black;
+		font-weight: normal;
+	}
+</style>
+	<img src="{% static 'images/aitshomepage.jpeg' %}" style="height: 450px;width: 100%">
+	
+	<div class="para">
+		<h1>Engineering College in Tirupati</h1>
+
+		<p>Annamacharya Institute of Technology & Sciences, Tirupati (AITS-T) was established in the
+			 year 2007, with a belief that education can influence and mould young minds. Within a decade, AITS, Tirupati
+			 received the prestigious stature of an institution with quality education.</p>
+			 <br>
+		<p>It is a sprawling campus of more than 45 acres of land. Attributing to the historical importance,
+			 Annamacharya, the beloved disciple of Lord Venkateswara who always cherishes to find his berth at 
+			 his lotus feet. Symbolically, the institute has been christened the name of Annamacharya and is established
+			  at the foot of Seven Hills the abode of lord Venkateswara.</p>
+	</div>
+	<img src="{% static 'images/alldept.jpeg' %}" style="width: 99%;">
+<div class="container" style="background-color: rgb(220, 222, 240); height: 600px;margin-top: 2%">
+	<h1 class="our"><b>Our Recruiters</b></h1>
 	<div class="row mt-3">
 		<div class="col-md-3">
-			<img src="{% static 'images/facebook.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
-				<p>Facebook</p>
-			</div>
+			<a target="_block"href="https://www.efftronics.com/">
+				<img src="{% static 'images/efftronics.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a>
+			<!-- <div class="content">
+				<p>Efftronics</p>
+			</div> -->
 		</div>
 		<div class="col-md-3">
-			<img src="{% static 'images/amazon.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://www.nttdata.com/global/en/">
+				<img src="{% static 'images/nttdata.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a>
+			<!-- <div class="content">
 				<p>Amazon</p>
-			</div>
+			</div> -->
 		</div>
 		<div class="col-md-3">
-			<img src="{% static 'images/Ntt.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://byjus.com/">
+			<img src="{% static 'images/byjus.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a>
+			<!-- <div class="content">
 				<p>NTT</p>
-			</div>
+			</div> -->
 		</div>
 		<div class="col-md-3">
-			<img src="{% static 'images/wipro.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://www.hcltech.com/">
+
+			<img src="{% static 'images/hcl.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a><!-- <div class="content">
 				<p>Wipro</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="row mt-3">
 		<div class="col-md-3">
-			<img src="{% static 'images/facebook.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://www.mphasis.com/">
+
+			<img src="{% static 'images/mphasis.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a><!-- <div class="content">
 				<p>Facebook</p>
-			</div>
+			</div> -->
 		</div>
 		<div class="col-md-3">
-			<img src="{% static 'images/amazon.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://www.ibm.com/">
+
+			<img src="{% static 'images/ibm.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a><!-- <div class="content">
 				<p>Amazon</p>
-			</div>
+			</div> -->
 		</div>
 		<div class="col-md-3">
-			<img src="{% static 'images/Ntt.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://www.csscorp.com/">
+
+			<img src="{% static 'images/csscorp.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+			</a><!-- <div class="content">
 				<p>NTT</p>
-			</div>
+			</div> -->
 		</div>
 		<div class="col-md-3">
-			<img src="{% static 'images/wipro.PNG' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 50%">
-			<div class="content">
+			<a target="_block"href="https://www.accenture.com/in-en">
+
+			<img src="{% static 'images/accenture.jpeg' %}" style="width: 100%;margin-top: 5%;height: 200px;border-radius: 30%">
+		</a>	<!-- <div class="content">
 				<p>Wipro</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </div>
