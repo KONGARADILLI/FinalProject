@@ -31,7 +31,7 @@ urlpatterns= [
  path('change_companylogo/<int:pid>',views.change_companylogo,name='change_companylogo'),
  path('delete_job/<int:pid>',views.delete_job,name='delete_job'),
  path('apply_job/<int:pid>',views.apply_job,name='apply_job'),
- path('candidate_applied/',views.candidate_applied,name='candidate_applied'),
+ path('candidate_applied/<int:pid>',views.candidate_applied,name='candidate_applied'),
 
 
 ]

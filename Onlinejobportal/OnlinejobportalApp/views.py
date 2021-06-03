@@ -79,10 +79,10 @@ def recruiter_signup(request):
 		e = request.POST['email']
 		con = request.POST['contact']
 		gen = request.POST['gender']
-		company = request.POST['company']
+		com = request.POST['company']
 		try:
 			user = User.objects.create_user(first_name=f,last_name=l,username=e,password=p)
-			Recruiter.objects.create(user=user,mobile=con,image=i,gender=gen,type="recruiter",status="pending")
+			Recruiter.objects.create(user=user,mobile=con,image=i,gender=gen,type="recruiter",company=com ,status="pending")
 			error="no"
 		except:
 			error="yes"
@@ -311,15 +311,17 @@ def add_job(request):
 		loc = request.POST['location']
 		skills = request.POST['skills']
 		des = request.POST['description']
+		com = request.POST['company']
 		user = request.user
 
 		recruiter = Recruiter.objects.get(user=user)
 		try:
 			Job.objects.create(recruiter=recruiter,start_date = sd,end_date=ed,title=jt,salary=sal,image=l,
-			description= des,experience = exp,location=loc,skills=skills,creationdate =date.today())
+			description= des,experience = exp,location=loc,skills=skills,creationdate =date.today(),company=com)
 			error="no"
 		except:
 			error="yes"
+		print(com)
 	d={'error':error}
 	return render(request,'html/add_job.html',d)
 
@@ -407,7 +409,7 @@ def user_joblist(request):
     # user = request.user
     # recruiter = Recruiter.objects.get(user=user)
     job = Job.objects.all()
-    # recruiter = Recruiter.objects.all()
+    # recruiter = Recruiter.objects.filter(company=com)
     d={'job':job}
     return render(request,'html/user_joblist.html',d)
 
@@ -437,19 +439,14 @@ def apply_job(request,pid):
 
 
 
-def candidate_applied(request):
+def candidate_applied(request,pid):
 	if not request.user.is_authenticated:
 		return redirect('recruiter_login')
 	# user = request.user
 	# recruiter = Recruiter.objects.all()
 	# job = Job.objects.filter(recruiter = recruiter)
-	app = Apply.objects.all()
+	app = Apply.objects.filter(job=pid)
 	d={'app':app}
 	return render(request,'html/candidate_applied.html',d)
 
-def view_users(request):
-	if not request.user.is_authenticated:
-		return redirect('admin_login')
-	data = StudentUser.objects.all()
-	d={'data':data}
-	return render(request,'html/view_users.html',d)
+

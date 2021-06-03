@@ -35,8 +35,7 @@ class Job(models.Model):
 	location = models.CharField(max_length=100)
 	skills = models.CharField(max_length=100)
 	creationdate = models.DateField()
-	
-
+	company = models.CharField(max_length=100)
 	def str(self):
 		return self.title
 
