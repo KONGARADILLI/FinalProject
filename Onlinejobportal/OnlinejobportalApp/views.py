@@ -424,12 +424,13 @@ def apply_job(request,pid):
 		st = request.POST['studentname']
 		# company= request.POST['company']
 		# jt = request.POST['title']
+		e = request.POST['email']
 		user = request.user
 		job = Job.objects.get(id = pid)
 		recruiter = Recruiter.objects.get(job=job)
 
 		try:
-			Apply.objects.create(student_resumes=res,applied_student=st,job=job,recruiter=recruiter)
+			Apply.objects.create(student_resumes=res,applied_student=st,job=job,recruiter=recruiter,student_email=e)
 			error="no"
 		except:
 			error="yes"
