@@ -27,12 +27,25 @@
 	<input type="email" class="form-control" name="uname" placeholder="Enter Email" required>
 	<label><b>Password :</b></label>
 	<input type="password" class="form-control" name="pwd" placeholder="Enter password" required>
-
-	<input type="submit" value="Login" class= "btn btn-primary" style="margin-top: 2%;font-family:bold;color:
+	<div class="row mt-3">
+		<div class="col-md-1">
+			<input type="submit" value="Login" class= "btn btn-primary" style="margin-top: 2%;font-family:bold;color:
 	 rgb(252, 252, 252);background-color: rgb(53, 99, 252) ; height: 40px; font-size: 20px" >
-
-	<a href="{% url 'user_signup' %}" class="btn btn-primary" style="margin-top: 2%;font-family:bold;color: 
+		</div>
+		<div class="col-md-2">
+			<a href="{% url 'user_signup' %}" class="btn btn-primary" style="margin-top: 2%;font-family:bold;color: 
 	rgb(252, 252, 252);background-color: rgb(53, 99, 252) ; height: 40px; font-size: 20px">Sign up</a>
+		</div>
+	</div>
+	<div class="row mt-3">
+		<div class="col-md-3">
+			<a href="{% url 'reset_password' %}" class="btn btn-primary btn-sm" style="margin-top: 2%;color: 
+		rgb(255, 255, 255);background-color: rgb(53, 99, 252) ; font-weight:bold;height: 40px; font-size: 20px" >Forgot password?</a>
+		</div>
+	</div>
+
+	
+	
 </form>
 
 {% ifequal error "no" %}

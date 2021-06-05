@@ -25,6 +25,9 @@ def admin_login(request):
 	d={'error':error}
 	return render(request,'html/admin_login.html',d)
 
+
+
+
 def user_login(request):
     error=""
     if request.method == "POST":

@@ -17,8 +17,8 @@
 </style>
 <h4 class="marquee">Admin Login</h4>
 <hr>
-
-	<form class="container mt-4" method="POST">
+<div class="container mt-4">
+	<form  method="POST">
 		{% csrf_token %}
 		<div class="form-group col-md-6">
 			<label>Username</label>
@@ -28,10 +28,19 @@
 			<label>Password</label>
 			<input type="password" class=" form-control" name="pwd" placeholder="Enter password" required>
 		</div>
-		<input type="submit" value="Login" class= "btn btn-primary" style="margin-top: 2%;color: 
+		<div class="row">
+			<div class="col-md-3">
+				<input type="submit" value="Login" class= "btn btn-primary" style="margin-top: 2%;color: 
 		rgb(255, 255, 255);background-color: rgb(53, 99, 252) ; font-weight:bold;height: 40px; font-size: 20px" >
+			</div>
+			<div class="col-md-3">
+				 <a href="{% url 'reset_password' %}" class="btn btn-primary btn-sm" style="margin-top: 2%;color: 
+		rgb(255, 255, 255);background-color: rgb(53, 99, 252) ; font-weight:bold;height: 40px; font-size: 20px" >Forgot password ?</a>
+			</div>
+		</div>
+		
 	</form>
-
+</div>
 {% ifequal error "no" %}
 <script>
 
