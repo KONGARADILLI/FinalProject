@@ -96,7 +96,35 @@ def recruiter_signup(request):
 def user_home(request):
     if not request.user.is_authenticated:
         return redirect('user_login/')
-    return render(request,'html/user_home.html')
+    user = request.user
+    student = StudentUser.objects.get(user=user)
+    error=""
+    if request.method == 'POST':
+    	f = request.POST['fname']
+    	l = request.POST['lname']
+    	con = request.POST['contact']
+    	gen = request.POST['gender']
+    	dept = request.POST['dept']
+    	student.user.first_name = f
+    	student.user.last_name = l
+    	student.user.mobile = con
+    	student.user.gender = gen
+    	student.user.dept = dept
+    	try:
+    		student.save()
+    		student.user.save()
+    		error="no"
+    	except:
+    		error="yes"
+    	try:
+    		i = request.FILES['image']
+    		student.image = i
+    		student.save()
+    		error="no"
+    	except:
+    		pass
+    d={'student':student,'error':error}
+    return render(request,'html/user_home.html',d)
 
 def recruiter_home(request):
     if not request.user.is_authenticated:
@@ -144,9 +172,11 @@ def user_signup(request):
 		e = request.POST['email']
 		con = request.POST['contact']
 		gen = request.POST['gender']
+		dept = request.POST['dept']
+		per = request.POST['percent']
 		try:
 			user = User.objects.create_user(first_name=f,last_name=l,username=e,password=p)
-			StudentUser.objects.create(user=user,mobile=con,image=i,gender=gen,type="student")
+			StudentUser.objects.create(user=user,mobile=con,image=i,gender=gen,type="student",percentage= per, dept= dept)
 			error="no"
 		except:
 			error="yes"
@@ -405,15 +435,14 @@ def change_companylogo(request,pid):
 def user_joblist(request):
     if not request.user.is_authenticated:
     	return redirect('user_login')
-    # user = request.user
-    # recruiter = Recruiter.objects.get(user=user)
-    # job = Job.objects.filter(recruiter = recruiter)
-    # d={'job':job}
-    # user = request.user
-    # recruiter = Recruiter.objects.get(user=user)
-    job = Job.objects.all()
-    # recruiter = Recruiter.objects.filter(company=com)
-    d={'job':job}
+    job = Job.objects.all().order_by('-start_date')
+    user = request.user
+    student = StudentUser.objects.get(user=user)
+    data = Apply.objects.filter(student=student)
+    li = []
+    for i in data:
+    	li.append(i.job.id)
+    d={'job':job,'li':li}
     return render(request,'html/user_joblist.html',d)
 
 
@@ -431,7 +460,6 @@ def apply_job(request,pid):
 		user = request.user
 		job = Job.objects.get(id = pid)
 		recruiter = Recruiter.objects.get(job=job)
-
 		try:
 			Apply.objects.create(student_resumes=res,applied_student=st,job=job,recruiter=recruiter,student_email=e)
 			error="no"
@@ -454,3 +482,14 @@ def candidate_applied(request,pid):
 	return render(request,'html/candidate_applied.html',d)
 
 
+def latest_jobs(request):
+
+	job = Job.objects.all().order_by('start_date')
+	d={'job':job}
+	return render(request,'html/latest_jobs.html',d)
+
+
+def job_detail(request,pid):
+    job = Job.objects.get(id=pid)
+    d={'job':job}
+    return render(request,'html/job_detail.html',d)

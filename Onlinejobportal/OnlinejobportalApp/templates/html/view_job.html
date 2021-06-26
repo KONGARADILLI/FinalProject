@@ -17,11 +17,10 @@
     tr{text-align: center;}
 </style>
 <h4 class="marquee">
-	job pool
+	About Job
 </h4>
 <hr>
 <div class="container">
-
 <table class="table table-hover" id="example">
 	<thead>
 		<tr style = "background-color: #000080;color:white">
@@ -43,22 +42,11 @@
 			<td>{{i.location}}</td>
 			<td>{{i.start_date}}</td>
 			<td>{{i.end_date}}</td>
-			{% if i.id in li %}
-			<td>Applied</td>
-			{% else %}
-            <td><a href="{% url 'job_detail' i.id %}" class="btn btn-success btn-sm " >View</a>
-            	{% endif %}
-            </td>
+            <td><a href="{% url 'user_login' %}" class="btn btn-success btn-sm " >Apply</a>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
-</div>
-
-
-
-            	
-            
 </div>
 
 

@@ -119,6 +119,22 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_URL = '/static'
+
+# AUTH_USER_MODEL='OnlinejobportalApp'
+
+# LOGIN_URL='log'
+# LOGIN_REDIRECT_URL='main'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBacked'
+
+EMAIL_USE_TLS=True
+EMAIL_HOST="smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'aitstpttpo@gmail.com '
+EMAIL_HOST_PASSWORD= 'aitstpttpo@123'
+
+
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')

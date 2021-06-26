@@ -1,27 +1,15 @@
 {% load static %}
-
 {% block body %}
 
-{% include 'html/user_navigation.html' %}
+{% include 'html/navbar.html' %}
 <style>
-	.marquee{
-		font-family: Algerian;
-		font-size: 25px;
-		color: rgb(0, 0, 0); 
-		font-weight: bold;
-		text-align: center;
-		margin: 10px;
-		
-	}
-
     tr{text-align: center;}
 </style>
-<h4 class="marquee">
-	job pool
-</h4>
+<marquee style="font-family: 'Algerian'; font-size: 25px; color: darkcyan; background-color: black;font-weight: bold;margin-top: 1%">
+	Latest Job List
+</marquee>
 <hr>
 <div class="container">
-
 <table class="table table-hover" id="example">
 	<thead>
 		<tr style = "background-color: #000080;color:white">
@@ -43,24 +31,11 @@
 			<td>{{i.location}}</td>
 			<td>{{i.start_date}}</td>
 			<td>{{i.end_date}}</td>
-			{% if i.id in li %}
-			<td>Applied</td>
-			{% else %}
-            <td><a href="{% url 'job_detail' i.id %}" class="btn btn-success btn-sm " >View</a>
-            	{% endif %}
-            </td>
+            <td><a href="{% url 'user_login' %}" class="btn btn-success btn-sm " >Login to Apply</a>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
 </div>
-
-
-
-            	
-            
-</div>
-
-
 
 {% endblock %}
