@@ -1,6 +1,6 @@
 from django.urls import path
 from OnlinejobportalApp import views
-from django.contrib.auth import views as ad  
+from django.contrib.auth import views as ad 
 
 urlpatterns= [
 
@@ -36,7 +36,7 @@ urlpatterns= [
  path('rst/',ad.PasswordResetView.as_view(template_name='html/resetpassword.html'),name='reset_password'),
  path('rst_done/',ad.PasswordResetDoneView.as_view(template_name='html/resetpassworddone.html'),name="password_reset_done"),
  path('rst_confirm/<uidb64>/<token>/',ad.PasswordResetConfirmView.as_view(template_name='html/resetpasswordconfirm.html'),name='password_reset_confirm'),
- path('rst_cmplt/',ad.PasswordResetCompleteView.as_view(template_name='html/reset_password_complete.html'),name="password_reset_complete"),
+ path('rst_cmplt/',ad.PasswordResetCompleteView.as_view(template_name='html/resetpasswordcomplete.html'),name="password_reset_complete"),
  path('latest_jobs/',views.latest_jobs,name='latest_jobs'),
  path('job_detail/<int:pid>',views.job_detail,name='job_detail'),
 

@@ -11,9 +11,9 @@
 	Apply for job
 </marquee>
 <hr>
-<form class="container mt-5" onsubmit="return checkpass()" name="signup" method="POST" enctype="multipart/form-data">
+<form class="container mt-5" name="signup" method="POST" enctype="multipart/form-data">
 	{% csrf_token %}
-	<div class="form-row">
+	<!-- <div class="form-row">
 		<div class="form-group col-md-6">
 			<label>FullName</label>
 			<input type="text" class=" form-control" name="studentname" readonly value="{{user.first_name}} {{user.last_name}}" required>
@@ -22,7 +22,7 @@
 			<label>Email</label>
 			<input type="email" class=" form-control" name="email" readonly value="{{user.username}}" required>
 		</div>
-	</div>
+	</div> -->
 	<!-- <div class="form-row">
 		<div class="form-group col-md-6">
 			<label>Company Name</label>
@@ -34,16 +34,17 @@
 		</div>
 	</div> -->
 
-    <div class="form-row">
+    <!-- <div class="form-row">
 		<div class="form-group col-md-6">
 			<label>Upload Resume</label>
 			<input type="file" class=" form-control" name="resume" required>
 		</div>
-	</div>
+	</div> -->
+	{{t.as_p}}
 	<input type="submit" value="Submit"  class="btn btn-primary my-3" style="width: 200px"> 
 
 </form>
-{% ifequal error "no" %}
+<!-- {% ifequal error "no" %}
 <script>
 	alert("Applied successfully ");
 	window.location=('{% url 'user_home' %}')
@@ -54,6 +55,6 @@
 <script>
 	alert("Something went wrong, try again........");
 </script>
-{% endifequal %}
+{% endifequal %} -->
 
 {% endblock %}

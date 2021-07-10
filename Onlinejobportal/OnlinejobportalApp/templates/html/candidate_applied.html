@@ -19,6 +19,7 @@
 			<th>S.no</th>
 			<th>Name </th>
 			<th>Email</th>
+			<th>Applied on</th>
 			<th>Resume</th>
 		</tr>
 	</thead>
@@ -26,8 +27,10 @@
 		{% for i in app %}
 		<tr style = "background-color: #DEB887">
 			<td>{{forloop.counter}}</td>
-			<td>{{i.applied_student}}</td>
 			<td>{{i.student_email}}</td>
+			<td>{{i.student}}</td>
+			<td>{{i.applied_date}}</td>
+			
 			<td><a href="{{i.student_resumes.url}}" download>{{i.student_resumes}}</a></td>
 		</tr>
 		{% endfor %}

@@ -32,13 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'OnlinejobportalApp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'OnlinejobportalApp',
+
 ]
 
 MIDDLEWARE = [
@@ -121,10 +122,6 @@ USE_TZ = True
 
 STATIC_URL = '/static'
 
-# AUTH_USER_MODEL='OnlinejobportalApp'
-
-# LOGIN_URL='log'
-# LOGIN_REDIRECT_URL='main'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBacked'
 
@@ -138,3 +135,4 @@ EMAIL_HOST_PASSWORD= 'aitstpttpo@123'
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT= os.path.join(BASE_DIR,'media')
+

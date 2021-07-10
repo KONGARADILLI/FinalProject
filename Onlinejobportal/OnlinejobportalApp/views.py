@@ -431,55 +431,92 @@ def change_companylogo(request,pid):
 	return render(request,'html/change_companylogo.html',d)
 
 
-
 def user_joblist(request):
-    if not request.user.is_authenticated:
-    	return redirect('user_login')
-    job = Job.objects.all().order_by('-start_date')
-    user = request.user
-    student = StudentUser.objects.get(user=user)
-    data = Apply.objects.filter(student=student)
-    li = []
-    for i in data:
-    	li.append(i.job.id)
-    d={'job':job,'li':li}
-    return render(request,'html/user_joblist.html',d)
+	if not request.user.is_authenticated:
+		return redirect('user_login')
+	job = Job.objects.all().order_by('-start_date')
+	student = StudentUser.objects.get(user=request.user)
+	data = Apply.objects.filter(student=student)
+	li = []
+	for i in data:
+		li.append(i.job.id)
+	d={'job':job,'li':li}
+	return render(request,'html/user_joblist.html',d)
+
+
+# def user_joblist(request):
+#     if not request.user.is_authenticated:
+#     	return redirect('user_login')
+#     job = Job.objects.all().order_by('-start_date')
+#     data = Apply.objects.filter(student = request.user.id)
+#     li = []
+#     for i in data:
+#     	li.append(i.job.id)
+#     d={'job':job,'li':li}
+#     return render(request,'html/user_joblist.html',d)
 
 
 
+# def apply_job(request,pid):
+# 	if not request.user.is_authenticated:
+# 		return redirect('user_login')
+# 	error=""
+# 	if request.method == 'POST':
+# 		res = request.FILES['resume']
+# 		# company= request.POST['company']
+# 		# jt = request.POST['title']
+# 		e = request.POST['email']
+# 		user = request.user
+# 		job = Job.objects.get(id = pid)
+# 		recruiter = Recruiter.objects.get(job=job)
+# 		try:
+# 			Apply.objects.create(resume=res,applied_date=date.today(),job=job,student_email=user,student_name=name)
+# 			error="no"
+# 		except:
+# 			error="yes"
+# 	d={'error':error}
+# 	return render(request,'html/apply_job.html',d)
+# 	resume = models.FileField(null=True)
+# 	applied_date = models.DateField(null=True)
+# 	def _str_(self):
+# 		return self.id
+
+from OnlinejobportalApp.forms import AplForm
 def apply_job(request,pid):
 	if not request.user.is_authenticated:
 		return redirect('user_login')
 	error=""
-	if request.method == 'POST':
-		res = request.FILES['resume']
-		st = request.POST['studentname']
-		# company= request.POST['company']
-		# jt = request.POST['title']
-		e = request.POST['email']
-		user = request.user
-		job = Job.objects.get(id = pid)
-		recruiter = Recruiter.objects.get(job=job)
-		try:
-			Apply.objects.create(student_resumes=res,applied_student=st,job=job,recruiter=recruiter,student_email=e)
-			error="no"
-		except:
-			error="yes"
-	d={'error':error}
-	return render(request,'html/apply_job.html',d)
-
-
+	if request.method == "POST":
+		s = AplForm(request.POST,request.FILES)
+		if s.is_valid():
+			f=s.save(commit=False)
+			f.job = Job.objects.get(id=pid)
+			f.recruiter = Recruiter.objects.get(id=f.job.recruiter_id)
+			f.student = StudentUser.objects.get(user=request.user.id)
+			f.student_email = request.user.first_name+" "+request.user.last_name
+			f.save()
+			return redirect('/user_joblist')
+	s = AplForm()
+	return render(request,'html/apply_job.html',{'t':s})
 
 
 def candidate_applied(request,pid):
 	if not request.user.is_authenticated:
 		return redirect('recruiter_login')
-	# user = request.user
-	# recruiter = Recruiter.objects.all()
-	# job = Job.objects.filter(recruiter = recruiter)
-	app = Apply.objects.filter(job=pid)
-	d={'app':app}
-	return render(request,'html/candidate_applied.html',d)
+	recruiter = Recruiter.objects.get(user=request.user.id)
+	k = Apply.objects.filter(job=pid,recruiter=recruiter)
+	return render(request,'html/candidate_applied.html',{'app':k})
+
+
+# def candidate_applied(request,pid):
+# 	if not request.user.is_authenticated:
+# 		return redirect('recruiter_login')
+# 	# user = request.user
+# 	# recruiter = Recruiter.objects.all()
+# 	# job = Job.objects.filter(recruiter = recruiter)
+# 	app = Apply.objects.filter(job=pid)
+# 	d={'app':app}
+# 	return render(request,'html/candidate_applied.html',d)
 
 
 def latest_jobs(request):

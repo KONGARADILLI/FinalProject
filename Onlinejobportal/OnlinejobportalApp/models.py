@@ -46,8 +46,18 @@ class Apply(models.Model):
 	student = models.ForeignKey(StudentUser,on_delete=models.CASCADE)
 	recruiter =models.ForeignKey(Recruiter,on_delete=models.CASCADE)
 	student_resumes = models.FileField(null=True)
-	student_email = models.CharField(max_length=20,null=True)
+	student_email = models.CharField(max_length=50,null=True)
 	applied_date = models.DateField(null=True)
 
-	def _str_(self):
-		return self.id
+	def __str__(self):
+		return self.student_email
+
+
+# class Apply(models.Model):
+# 	job = models.ForeignKey(Job,on_delete=models.CASCADE)
+# 	student_email = models.CharField(max_length=100)
+# 	student_name = models.CharField(max_length=100)
+# 	resume = models.FileField(null=True)
+# 	applied_date = models.DateField(null=True)
+# 	def _str_(self):
+# 		return self.id

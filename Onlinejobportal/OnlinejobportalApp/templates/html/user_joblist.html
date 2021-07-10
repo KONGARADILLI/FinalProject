@@ -46,7 +46,7 @@
 			{% if i.id in li %}
 			<td>Applied</td>
 			{% else %}
-            <td><a href="{% url 'job_detail' i.id %}" class="btn btn-success btn-sm " >View</a>
+            <td><a href="{% url 'job_detail' i.id %}" class="btn btn-success btn-sm " >View</a>|| <a href="{% url 'apply_job' i.id %}" class="btn btn-primary">Apply For Job</a>
             	{% endif %}
             </td>
 		</tr>
